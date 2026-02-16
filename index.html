@@ -1,149 +1,102 @@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Thư Yêu PRO MAX 💌</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Chúc Mừng Năm Mới 2026 🎆</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-
+*{margin:0;padding:0;box-sizing:border-box}
 body{
   overflow:hidden;
+  background:#000;
   font-family:'Segoe UI',sans-serif;
-  background:#000; /* nền đen tuyệt đối */
   color:#fff;
 }
 
-/* ===== màn hình mật khẩu ===== */
+/* ===== LOCK SCREEN ===== */
 .lock{
-  position:fixed;
-  inset:0;
+  position:fixed;inset:0;
   background:#000;
- .jpg);
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  flex-direction:column;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
   z-index:9999;
 }
 
 .heart{
-  width:90px;
-  height:90px;
-  background:red;
-  transform:rotate(-45deg);
-  margin-bottom:20px;
-  position:relative;
+  width:90px;height:90px;background:red;
+  transform:rotate(-45deg);margin-bottom:20px;position:relative;
 }
-.heart::before,
-.heart::after{
-  content:"";
-  position:absolute;
-  width:90px;
-  height:90px;
-  background:red;
-  border-radius:50%;
+.heart:before,.heart:after{
+  content:"";position:absolute;width:90px;height:90px;
+  background:red;border-radius:50%;
 }
-.heart::before{top:-45px;left:0}
-.heart::after{left:45px;top:0}
+.heart:before{top:-45px}
+.heart:after{left:45px}
 
 input{
-  padding:10px 16px;
-  border-radius:20px;
-  border:none;
-  outline:none;
-  text-align:center;
-  font-size:18px;
+  padding:12px 18px;border-radius:20px;border:none;
+  outline:none;text-align:center;font-size:18px;
 }
 
-/* ===== bầu trời ===== */
+/* ===== SKY ===== */
 .moon{
-  position:absolute;
-  top:60px;
-  left:50%;
+  position:absolute;top:60px;left:50%;
   transform:translateX(-50%);
-  width:120px;
-  height:120px;
-  background:#fff5cc;
-  border-radius:50%;
-  box-shadow:0 0 60px #fff5cc;
+  width:120px;height:120px;border-radius:50%;
+  background:#fff5cc;box-shadow:0 0 70px #fff5cc;
 }
 
 .star{
-  position:absolute;
-  width:2px;
-  height:2px;
-  background:white;
-  opacity:.8;
+  position:absolute;width:2px;height:2px;background:#fff;
   animation:twinkle 2s infinite alternate;
 }
 @keyframes twinkle{from{opacity:.2}to{opacity:1}}
 
-/* ===== đèn trời ===== */
+/* ===== LANTERN ===== */
 .lantern{
-  position:absolute;
-  bottom:-120px;
-  width:50px;
-  height:70px;
+  position:absolute;bottom:-120px;width:50px;height:70px;
   background:linear-gradient(#ffb347,#ff3d00);
-  border-radius:12px;
-  cursor:pointer;
+  border-radius:12px;cursor:pointer;
   animation:fly linear forwards;
-  box-shadow:0 0 15px rgba(255,140,0,.8);
+  box-shadow:0 0 18px rgba(255,140,0,.9);
 }
 @keyframes fly{
   from{transform:translateY(0);opacity:1}
   to{transform:translateY(-130vh);opacity:0}
 }
 
-/* ===== overlay ===== */
+/* ===== OVERLAY ===== */
 .overlay{
-  position:fixed;
-  inset:0;
-  background:rgba(0,0,0,.75);
-  display:none;
-  backdrop-filter:blur(8px);
+  position:fixed;inset:0;
+  background:rgba(0,0,0,.8);
+  display:none;backdrop-filter:blur(10px);
 }
 .overlay.show{display:block}
 
-/* ===== thiệp ===== */
+/* ===== CARD ===== */
 .card{
-  position:fixed;
-  top:50%;
-  left:50%;
+  position:fixed;top:50%;left:50%;
   transform:translate(-50%,-50%) scale(0) rotateY(90deg);
-  width:280px;
-  height:440px;
-  background:#8b0000;
-  border:4px solid gold;
-  border-radius:16px;
-  color:gold;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  justify-content:center;
-  text-align:center;
-  padding:20px;
-  transition:.6s ease;
-  box-shadow:0 0 50px rgba(255,215,0,.7);
+  width:300px;height:470px;
+  background:#8b0000;border:4px solid gold;border-radius:18px;
+  color:gold;text-align:center;padding:22px;
+  display:flex;flex-direction:column;justify-content:center;align-items:center;
+  transition:.6s;box-shadow:0 0 60px rgba(255,215,0,.8);
 }
 .card.show{transform:translate(-50%,-50%) scale(1) rotateY(0)}
 
-.card img{
-  width:100%;
-  border-radius:12px;
-  margin-top:12px;
+.card img{width:100%;border-radius:12px;margin-top:12px}
+
+/* ===== LOVE INFO ===== */
+.love{
+  position:absolute;bottom:40px;width:100%;text-align:center;
+  font-size:18px;color:#ffd700;text-shadow:0 0 10px gold;
 }
 
-/* ===== pháo hoa ===== */
+/* ===== FIREWORK ===== */
 .firework{
-  position:fixed;
-  width:6px;
-  height:6px;
-  background:gold;
-  border-radius:50%;
-  pointer-events:none;
+  position:fixed;width:6px;height:6px;background:gold;border-radius:50%;
   animation:explode 900ms ease-out forwards;
 }
 @keyframes explode{
@@ -154,10 +107,10 @@ input{
 
 <body>
 
-<!-- ===== màn hình khóa ===== -->
+<!-- LOCK -->
 <div class="lock" id="lock">
   <div class="heart"></div>
-  <input type="password" id="pass" placeholder="Nhập mật khẩu..." />
+  <input type="password" id="pass" placeholder="Nhập mật khẩu trái tim..." />
 </div>
 
 <div class="moon"></div>
@@ -165,25 +118,28 @@ input{
 
 <div class="card" id="card">
   <div id="text"></div>
-  <img id="photo" src="" style="display:none"/>
+  <img id="photo" style="display:none">
 </div>
+
+<div class="love" id="love"></div>
 
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* ===== mở khóa ===== */
-document.getElementById("pass").addEventListener("keyup",e=>{
+/* ===== PASSWORD ===== */
+pass.onkeyup=e=>{
   if(e.target.value==="0312"){
-    document.getElementById("lock").style.display="none";
+    lock.style.display="none";
     startSky();
+    showLoveDays();
   }
-});
+};
 
-/* ===== tạo sao ===== */
+/* ===== SKY ===== */
 function startSky(){
-  for(let i=0;i<80;i++){
+  for(let i=0;i<90;i++){
     const s=document.createElement("div");
     s.className="star";
     s.style.left=Math.random()*100+"vw";
@@ -191,21 +147,28 @@ function startSky(){
     s.style.animationDelay=Math.random()*2+"s";
     document.body.appendChild(s);
   }
-  setInterval(createLantern,500);
+  setInterval(createLantern,450);
 }
 
-/* ===== dữ liệu ===== */
-const messages=[
-"Chúc em năm mới thật nhiều niềm vui 💖",
-"Mong mọi điều may mắn sẽ đến với em 🌸",
-"Cảm ơn vì đã ở bên anh ✨",
-"Chúng ta hãy cùng hạnh phúc thật lâu nhé 🥰",
-"Anh thương em nhiều lắm ❤️"
-];
+/* ===== LOVE DAYS ===== */
+function showLoveDays(){
+  const start=new Date("2025-12-03");
+  const now=new Date();
+  const days=Math.floor((now-start)/(1000*60*60*24));
+  love.innerHTML=`Thành Khang ❤️ Hoài Thương<br>Đã bên nhau ${days} ngày 💖`;
+}
 
+/* ===== DATA ===== */
+const messages=[
+"Chúc em năm mới 2026 thật nhiều niềm vui 🎆",
+"Mong mọi may mắn sẽ đến với em trong năm mới 🌸",
+"Cảm ơn vì đã luôn ở bên anh 💖",
+"Năm mới mình vẫn nắm tay nhau nhé 🥰",
+"Anh thương em rất nhiều ❤️"
+];
 const images=["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"];
 
-/* ===== đèn trời ===== */
+/* ===== LANTERN ===== */
 function createLantern(){
   const l=document.createElement("div");
   l.className="lantern";
@@ -216,10 +179,9 @@ function createLantern(){
   setTimeout(()=>l.remove(),15000);
 }
 
-/* ===== mở thiệp ===== */
+/* ===== OPEN CARD ===== */
 function openCard(){
   const i=Math.floor(Math.random()*5);
-
   text.innerText=messages[i];
   photo.src=images[i];
   photo.style.display="block";
@@ -231,30 +193,26 @@ function openCard(){
   fireworks();
 }
 
-/* ===== đóng ===== */
+/* ===== CLOSE ===== */
 overlay.onclick=()=>{
   overlay.classList.remove("show");
   card.classList.remove("show");
 };
 
-/* ===== nhạc ===== */
+/* ===== MUSIC ===== */
 function playMusic(){
-  const m=document.getElementById("music");
-  m.volume=0.6;
-  m.play().catch(()=>{});
+  music.volume=0.6;
+  music.play().catch(()=>{});
 }
 
-/* ===== pháo hoa ===== */
+/* ===== FIREWORK ===== */
 function fireworks(){
-  for(let i=0;i<50;i++){
+  for(let i=0;i<60;i++){
     const f=document.createElement("div");
     f.className="firework";
-    const x=(Math.random()-0.5)*350+"px";
-    const y=(Math.random()-0.5)*350+"px";
-    f.style.left="50%";
-    f.style.top="50%";
-    f.style.setProperty("--x",x);
-    f.style.setProperty("--y",y);
+    f.style.left="50%";f.style.top="50%";
+    f.style.setProperty("--x",(Math.random()-0.5)*400+"px");
+    f.style.setProperty("--y",(Math.random()-0.5)*400+"px");
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),900);
   }
