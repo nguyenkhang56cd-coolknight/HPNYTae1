@@ -6,16 +6,58 @@
 <title>Thư Yêu PRO MAX 💌</title>
 
 <style>
-*{box-sizing:border-box}
+*{box-sizing:border-box;margin:0;padding:0}
+
 body{
-  margin:0;
   overflow:hidden;
   font-family:'Segoe UI',sans-serif;
-  background: radial-gradient(circle at center,#05070f,#000); /* nền đen thật */
+  background:#000; /* nền đen tuyệt đối */
   color:#fff;
 }
 
-/* mặt trăng */
+/* ===== màn hình mật khẩu ===== */
+.lock{
+  position:fixed;
+  inset:0;
+  background:#000;
+ .jpg);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  flex-direction:column;
+  z-index:9999;
+}
+
+.heart{
+  width:90px;
+  height:90px;
+  background:red;
+  transform:rotate(-45deg);
+  margin-bottom:20px;
+  position:relative;
+}
+.heart::before,
+.heart::after{
+  content:"";
+  position:absolute;
+  width:90px;
+  height:90px;
+  background:red;
+  border-radius:50%;
+}
+.heart::before{top:-45px;left:0}
+.heart::after{left:45px;top:0}
+
+input{
+  padding:10px 16px;
+  border-radius:20px;
+  border:none;
+  outline:none;
+  text-align:center;
+  font-size:18px;
+}
+
+/* ===== bầu trời ===== */
 .moon{
   position:absolute;
   top:60px;
@@ -28,21 +70,17 @@ body{
   box-shadow:0 0 60px #fff5cc;
 }
 
-/* sao trời */
 .star{
   position:absolute;
   width:2px;
   height:2px;
   background:white;
   opacity:.8;
-  animation: twinkle 2s infinite alternate;
+  animation:twinkle 2s infinite alternate;
 }
-@keyframes twinkle{
-  from{opacity:.2}
-  to{opacity:1}
-}
+@keyframes twinkle{from{opacity:.2}to{opacity:1}}
 
-/* đèn trời */
+/* ===== đèn trời ===== */
 .lantern{
   position:absolute;
   bottom:-120px;
@@ -51,15 +89,15 @@ body{
   background:linear-gradient(#ffb347,#ff3d00);
   border-radius:12px;
   cursor:pointer;
-  animation: fly linear forwards;
+  animation:fly linear forwards;
   box-shadow:0 0 15px rgba(255,140,0,.8);
 }
 @keyframes fly{
-  from{ transform:translateY(0); opacity:1;}
-  to{ transform:translateY(-130vh); opacity:0;}
+  from{transform:translateY(0);opacity:1}
+  to{transform:translateY(-130vh);opacity:0}
 }
 
-/* overlay */
+/* ===== overlay ===== */
 .overlay{
   position:fixed;
   inset:0;
@@ -69,7 +107,7 @@ body{
 }
 .overlay.show{display:block}
 
-/* thiệp */
+/* ===== thiệp ===== */
 .card{
   position:fixed;
   top:50%;
@@ -90,9 +128,7 @@ body{
   transition:.6s ease;
   box-shadow:0 0 50px rgba(255,215,0,.7);
 }
-.card.show{
-  transform:translate(-50%,-50%) scale(1) rotateY(0deg);
-}
+.card.show{transform:translate(-50%,-50%) scale(1) rotateY(0)}
 
 .card img{
   width:100%;
@@ -100,7 +136,7 @@ body{
   margin-top:12px;
 }
 
-/* pháo hoa */
+/* ===== pháo hoa ===== */
 .firework{
   position:fixed;
   width:6px;
@@ -111,15 +147,18 @@ body{
   animation:explode 900ms ease-out forwards;
 }
 @keyframes explode{
-  to{
-    transform:translate(var(--x),var(--y));
-    opacity:0;
-  }
+  to{transform:translate(var(--x),var(--y));opacity:0}
 }
 </style>
 </head>
 
 <body>
+
+<!-- ===== màn hình khóa ===== -->
+<div class="lock" id="lock">
+  <div class="heart"></div>
+  <input type="password" id="pass" placeholder="Nhập mật khẩu..." />
+</div>
 
 <div class="moon"></div>
 <div class="overlay" id="overlay"></div>
@@ -129,20 +168,30 @@ body{
   <img id="photo" src="" style="display:none"/>
 </div>
 
-<!-- nhạc -->
 <audio id="music" loop>
   <source src="music.mp3" type="audio/mpeg">
 </audio>
 
 <script>
-/* ===== tạo sao trời ===== */
-for(let i=0;i<80;i++){
-  const s=document.createElement("div");
-  s.className="star";
-  s.style.left=Math.random()*100+"vw";
-  s.style.top=Math.random()*100+"vh";
-  s.style.animationDelay=Math.random()*2+"s";
-  document.body.appendChild(s);
+/* ===== mở khóa ===== */
+document.getElementById("pass").addEventListener("keyup",e=>{
+  if(e.target.value==="0312"){
+    document.getElementById("lock").style.display="none";
+    startSky();
+  }
+});
+
+/* ===== tạo sao ===== */
+function startSky(){
+  for(let i=0;i<80;i++){
+    const s=document.createElement("div");
+    s.className="star";
+    s.style.left=Math.random()*100+"vw";
+    s.style.top=Math.random()*100+"vh";
+    s.style.animationDelay=Math.random()*2+"s";
+    document.body.appendChild(s);
+  }
+  setInterval(createLantern,500);
 }
 
 /* ===== dữ liệu ===== */
@@ -156,7 +205,7 @@ const messages=[
 
 const images=["1.jpg","2.jpg","3.jpg","4.jpg","5.jpg"];
 
-/* ===== tạo đèn trời liên tục ===== */
+/* ===== đèn trời ===== */
 function createLantern(){
   const l=document.createElement("div");
   l.className="lantern";
@@ -166,27 +215,24 @@ function createLantern(){
   document.body.appendChild(l);
   setTimeout(()=>l.remove(),15000);
 }
-setInterval(createLantern,500);
 
 /* ===== mở thiệp ===== */
 function openCard(){
   const i=Math.floor(Math.random()*5);
 
-  document.getElementById("text").innerText=messages[i];
+  text.innerText=messages[i];
+  photo.src=images[i];
+  photo.style.display="block";
 
-  const img=document.getElementById("photo");
-  img.src=images[i];
-  img.style.display="block";
-
-  document.getElementById("overlay").classList.add("show");
-  document.getElementById("card").classList.add("show");
+  overlay.classList.add("show");
+  card.classList.add("show");
 
   playMusic();
   fireworks();
 }
 
-/* ===== đóng thiệp ===== */
-document.getElementById("overlay").onclick=()=>{
+/* ===== đóng ===== */
+overlay.onclick=()=>{
   overlay.classList.remove("show");
   card.classList.remove("show");
 };
@@ -203,15 +249,12 @@ function fireworks(){
   for(let i=0;i<50;i++){
     const f=document.createElement("div");
     f.className="firework";
-
     const x=(Math.random()-0.5)*350+"px";
     const y=(Math.random()-0.5)*350+"px";
-
     f.style.left="50%";
     f.style.top="50%";
     f.style.setProperty("--x",x);
     f.style.setProperty("--y",y);
-
     document.body.appendChild(f);
     setTimeout(()=>f.remove(),900);
   }
